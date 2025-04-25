@@ -1,0 +1,99 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Form Submisson checker</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+      
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+      
+        <button type="button" id="loginButton">Login</button>
+      </form>
+      
+      <p id="status"></p>
+
+      <script>
+        document.getElementById('loginButton').addEventListener('click'), function(event){
+            event.preventDefault()
+
+            const user = getElementById('username').value;
+            const password = getElementById('password').value;
+
+            function performLogin(user, password, callback){
+               setTimeout(() => {
+                
+                   const loginSuccessful = (user == 'test' && password == 'test')
+                  callback()
+               }, 2000);
+            }
+            function loginMsg(){
+                document.getElementById('status').textContent = 'Login Successful'
+            }
+
+            performLogin()
+
+
+            
+        }
+      </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Form with Callback</title>
+</head>
+<body>
+
+<form id="loginForm">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username"><br><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password"><br><br>
+
+  <button type="button" id="loginButton">Login</button>
+</form>
+
+<p id="status"></p>
+
+<script>
+  document.getElementById('loginButton').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent form submission (if any)
+
+    // Get form data
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+   
+    function performLogin(username, password, callback) {
+      
+      setTimeout(() => {
+        const loginSuccessful = (username === 'test' && password === 'password');
+        callback(loginSuccessful);
+      }, 1000); // Simulate a delay
+    }
+    function isSuccessful(sucess) {
+      if (sucess) {
+        document.getElementById('status').textContent = 'Login successful!';
+      } else {
+        document.getElementById('status').textContent = 'Login failed. Check username and password.';
+      }
+    };
+
+    // Call the login function with a callback
+    performLogin(username, password,isSuccessful )
+  });
+</script>
+
+</body>
+</html>
