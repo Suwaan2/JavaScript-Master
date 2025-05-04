@@ -4,7 +4,7 @@
 //  setTimeout(() => {
 //     resolve(console.log("Message Accepted"))
 //  }, 2000);
-    
+
 // })
 // promise.then(()=>{
 //     return 1;
@@ -16,11 +16,11 @@
 //       resolve("foo");
 //     }, 300);
 //   });
-  
+
 
 // Test Case 
 
-const work = new Promise((reslove, reject)=>{
+const work = new Promise((reslove, reject) => {
   let workCommend;
   setTimeout(() => {
     // reslove("Working commmended")
@@ -34,9 +34,9 @@ const work = new Promise((reslove, reject)=>{
   }, 2000);
 })
 
-work.then(()=>{
+work.then(() => {
   console.log("Work Completed")
-}).catch(()=>{
+}).catch(() => {
   console.log("Work Failed")
 })
 
@@ -45,12 +45,12 @@ work.then(()=>{
 // Create a chain of 3 promises that depends upon each others
 
 // const newPromise = new Promise((resolve, reject)=>{
-  
+
 //   resolve("Resolved")
-  
+
 
 //   setTimeout(() => {
-    
+
 //     if(resolve){
 //       const promise1 = new Promise((resolve, reject)=>{
 //         resolve("Resolved 1")
@@ -62,20 +62,60 @@ work.then(()=>{
 // Promise chaining means chaining using the .then function not chaingig the acutual promise created nested chaining loop 
 
 
-new Promise((reslove, reject)=>{
+new Promise((reslove, reject) => {
   setTimeout(() => {
     reslove(1)
   }, 1000);
-}).then((result)=>{
+}).then((result) => {
   console.log(result)
   return result * 2
-}).then((result)=>{
+}).then((result) => {
   console.log(result)
   return result * 4
-}).then((result)=>{
+}).then((result) => {
   console.log(result)
   return result * 6
 })
 
 
-  
+
+
+
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve({ username: "suan", email: "suan@gmail.com" })
+  }, 1000);
+})
+
+promise3.then((result) => {
+  console.log(result)
+})
+
+
+const promise4 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let error = false;
+    if (!error) {
+      resolve({ username: 'suan', password: "231231" })
+    } else {
+      reject('ERROR: Something went wrong')
+    }
+  }, 1000);
+})
+//Promise chanining use in database 
+promise4.then((user) => {
+  console.log(user)
+  return user.username
+}).then((username) => {
+  console.log(username)
+}).catch((error) => {
+  console.log(error)
+}).finally(()=>{
+  console.log("The promise have been resolved or rejected")
+})
+
+
+
+
+
+
